@@ -64,17 +64,18 @@ elements.pageButton.addEventListener('click', (e) => {
 /*
 RECIPE CONTROLLER
 */
-state.like = new Likes();
 const recipeController = async () => {
+  //get id for recipe
+  const id = window.location.hash.replace('#', '');
   //1. prepare the ui for the new recipe
   //1.1 remove previous result
-  recipeView.clearRecipe();
-  recipeView.removeClass();
-  //1.2  add loader
-  addLoader(elements.parent);
+  if (id) {
+    recipeView.clearRecipe();
+    recipeView.removeClass();
+    //1.2  add loader
+    addLoader(elements.parent);
+  }
   try {
-    //2.get id for recipe
-    const id = window.location.hash.replace('#', '');
     //3.create a new instance of the recipe class and save in state
     if (id) {
       state.recipe = new Recipe(id);
